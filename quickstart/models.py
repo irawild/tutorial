@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.db.models.fields import FloatField
 
 # To make changes 
@@ -21,13 +22,18 @@ class Product(models.Model):
 
 class Order(models.Model):
     #product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    user = models.CharField(max_length=20, default='')
     date_time = models.DateTimeField('date and time ordered')
     status = models.CharField(default='Added', max_length=20) #Added, Confirmed, Preparing, Ready, OnWay, Delivered
+    total_paid = models.FloatField(default=0)
 
     def __str__(self):
-        return self.product.name
+        return self.user
 
+class OrderItems(models.Model):
+    product = models.ForeignKey(Product, on_delete=CASCADE)
+    order = models.ForeignKey(Order, on_delete=CASCADE)
+    quantity = models.IntegerField(default=0)
 
 class Payment(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

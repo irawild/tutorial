@@ -23,7 +23,7 @@ class Product(models.Model):
 class Order(models.Model):
     #product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.CharField(max_length=20, default='')
-    date_time = models.DateTimeField('date and time ordered')
+    date_time = models.CharField(max_length=30, default='01/01/2021')
     status = models.CharField(default='Added', max_length=20) #Added, Confirmed, Preparing, Ready, OnWay, Delivered
     total_paid = models.FloatField(default=0)
 

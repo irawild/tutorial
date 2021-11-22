@@ -24,7 +24,7 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
         #fields = ['product_name', 'quantity', 'date_time', 'status']
-        fields = ['total_paid', 'date_time', 'status']
+        fields = ['total_paid', 'date_time', 'status', 'user']
 
 class OrderItemsSerializer(serializers.HyperlinkedModelSerializer):
     product_name = serializers.CharField(read_only=True, source='product.name')

@@ -1,7 +1,7 @@
 from types import ClassMethodDescriptorType
 from django.contrib.auth import models
 from django.contrib.auth.models import User, Group
-from .models import Product, Order, Payment, OrderItems
+from .models import Product, Order, Payment, OrderItem
 from rest_framework import serializers
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -26,11 +26,11 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
         #fields = ['product_name', 'quantity', 'date_time', 'status']
         fields = ['total_paid', 'date_time', 'status', 'user']
 
-class OrderItemsSerializer(serializers.HyperlinkedModelSerializer):
+class OrderItemSerializer(serializers.HyperlinkedModelSerializer):
     #product_name = serializers.CharField(read_only=True, source='product.name')
     class Meta:
-        model = OrderItems
-        fiels = ['quantity']
+        model = OrderItem
+        fiels = ['product', 'order', 'quantity']
 
 class PaymentSerializer(serializers.HyperlinkedModelSerializer):
     #product_name = serializers.CharField(read_only=True, source='order.product.name')

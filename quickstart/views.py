@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
-from .models import OrderItems, Product, Order, Payment
+from .models import OrderItem, Product, Order, Payment, OrderItem
 from rest_framework import viewsets
 from rest_framework import permissions
-from quickstart.serializers import ProductSerializer, UserSerializer, GroupSerializer, OrderSerializer, PaymentSerializer, OrderItemsSerializer
+from quickstart.serializers import ProductSerializer, UserSerializer, GroupSerializer, OrderSerializer, PaymentSerializer, OrderItemSerializer
 
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
@@ -37,7 +37,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
     permission_class = [permissions.IsAuthenticated]
 
-class OrderItemsViewSet(viewsets.ModelViewSet):
-    queryset = OrderItems.objects.all()
-    serializer_class = OrderItemsSerializer
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
     permission_class = [permissions.IsAuthenticated]

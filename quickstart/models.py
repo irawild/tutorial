@@ -32,7 +32,7 @@ class Order(models.Model):
     def __str__(self):
         return self.user
 
-class OrderItems(models.Model):
+class OrderItem(models.Model):
     id = models.IntegerField(auto_created=True, primary_key=True)
     product = models.ForeignKey(Product, on_delete=CASCADE)
     order = models.ForeignKey(Order, on_delete=CASCADE)

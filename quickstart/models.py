@@ -9,6 +9,7 @@ from django.db.models.fields import FloatField
 # # 4 - run python manage.py sqlmigrate appname migrationsnumber
 
 class Product(models.Model):
+    id = models.IntegerField(auto_created=True, primary_key=True)
     name = models.CharField(max_length=100)
     price = models.FloatField()
     promotion = models.BooleanField(default=False)
@@ -21,6 +22,7 @@ class Product(models.Model):
         return self.name
 
 class Order(models.Model):
+    id = models.IntegerField(auto_created=True, primary_key=True)
     #product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.CharField(max_length=20, default='')
     date_time = models.CharField(max_length=30, default='01/01/2021')
@@ -31,6 +33,7 @@ class Order(models.Model):
         return self.user
 
 class OrderItems(models.Model):
+    id = models.IntegerField(auto_created=True, primary_key=True)
     product = models.ForeignKey(Product, on_delete=CASCADE)
     order = models.ForeignKey(Order, on_delete=CASCADE)
     quantity = models.IntegerField(default=0)

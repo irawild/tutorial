@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from .models import OrderItem, Product, Order, Payment, OrderItem
 from rest_framework import viewsets
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
 from rest_framework import permissions
 from quickstart.serializers import ProductSerializer, UserSerializer, GroupSerializer, OrderSerializer, PaymentSerializer, OrderItemSerializer
 
@@ -31,6 +33,13 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_class = [permissions.IsAuthenticated]
+
+# class APIViewTest(APIView):
+#     def get(self, request):
+#         orders = Order.objects.all()
+#         serializer = OrderSerializer(orders, many=True)
+#         return Response(serializer.data)
+        
 
 class PaymentViewSet(viewsets.ModelViewSet):
     queryset = Payment.objects.all()
